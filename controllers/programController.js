@@ -15,7 +15,9 @@ export const getPrograms = async (req, res) => {
     return res.status(200).json(data);
     // 키워드가 존재하지 않으면 모든 프로그램 select
   } else {
-    const { data, error } = await supabase.from("PROGRAM").select("*");
+    const { data, error } = await supabase
+      .from("PROGRAM")
+      .select(`*, BEACH(beach_name)`);
     if (error) console.log(error.message);
     return res.status(200).json(data);
   }
