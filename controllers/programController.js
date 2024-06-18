@@ -17,7 +17,9 @@ export const getPrograms = async (req, res) => {
   } else {
     const { data, error } = await supabase
       .from("PROGRAM")
-      .select(`*, BEACH(beach_name)`);
+      .select(
+        `*, BEACH(id, beach_name, theme_color), BUSINESS(business_name), SPORT(id, theme_color, title)`
+      );
     if (error) console.log(error.message);
     return res.status(200).json(data);
   }
